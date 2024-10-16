@@ -10,16 +10,13 @@ ageTier1 = [15,25] #Age tiers put here so they are editable if need be in the fu
 ageTier2 = [25,40] #ageTierX[0] = the first age in the range
 ageTier3 = [40,70] #ageTierX[1] = the last age in the range
 
-# insuranceRatesMale = [0.25,0.17,0.1]
-# insuranceRatesFemale = [0.2,0.15,0.1]
-
 insuranceRateList = [[0.2,0.15,0.1],[0.25,0.17,0.1]] #first list values are for female tiers, second is for male
-
 
 userSex = 0
 userAge = 0
 vehiclePrice = 0.0
 insuranceRate = 0.0
+finalInsurance = 0.0
 
 def main():
     # YOUR CODE STARTS HERE, each line must be indented (one tab)
@@ -27,23 +24,27 @@ def main():
     #Ask the user whether they are male or female
  
     userSex = input("Are you 'Male' or 'Female'?: ").lower()
-    
+    print("")
+
     #Convert userSex to int for later calculations
-    match userSex:
-
-        case "male":
+    
+    if userSex == "male":
             userSex = 1
-
-        case "female":
+    elif userSex == "female":
             userSex = 0
+    else:
+         print("Incorrect Value; Program Ending")
+         return
 
     #Ask the user what their age is
  
     userAge = int(input("Enter your age: "))
+    print("")
 
     #Ask the user what purchase price of the vehicle
 
     vehiclePrice = float(input("Enter the purchase price of the vehicle: "))
+    print("")
 
     #Calculate the monthly insurance based on age and sex
 
@@ -66,15 +67,15 @@ def main():
                 insuranceRate = insuranceRateList[0][1]
             else:
                 insuranceRate = insuranceRateList[0][2]
-        
-    print(insuranceRate)
+
+    #Calculate the monthly insurance rate by multiplying the insuranceRate and the Vehicle Price
+
+    finalInsurance = (insuranceRate * vehiclePrice) / 12
 
     #Tell the user what the monthly insurance rate is
 
-
-
-
-
+    print(f"Your monthly insurance will be ${finalInsurance:.2f}")
+    print("")
 
     # YOUR CODE ENDS HERE
 
